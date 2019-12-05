@@ -2,6 +2,8 @@ let homeVM = function() {
     self = this;
 
     self.playlists = ko.observableArray([]);
+    self.webQueue = ko.observableArray([]);
+    self.publicQueue = ko.observableArray([]);
 
 }
 
@@ -19,3 +21,5 @@ let vm = new homeVM();
 function bind() {
     ko.applyBindings(vm, $("#mainBinding")[0]);
 }
+
+loadDependencies();
