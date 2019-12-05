@@ -9,10 +9,29 @@ let homeVM = function() {
 
 let loadDependencies = function() {
     getPlaylists();
+    getWebQueue();
+    getPublicQueue();
+    getFriendList();
     bind();
 }
 
 let getPlaylists = function() {
+
+}
+
+let getWebQueue = function() {
+
+}
+
+let getPublicQueue = function() {
+
+}
+
+let getFriendList = function() {
+
+}
+
+let addFriend = function() {
 
 }
 
