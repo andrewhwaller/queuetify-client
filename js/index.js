@@ -6,14 +6,24 @@ let homeVM = function() {
     self.publicQueue = ko.observableArray([]);
     self.searchBarInput = ko.observable()
 
+    let playlistOne = {
+        name: "list one", 
+        songCount: 2
+    }
+    
+    let playlistTwo = {
+        name: "list two", 
+        songCount: 15
+    }
+    let testPlaylists = [playlistOne, playlistTwo]
+    
+    self.playlists(testPlaylists)
 }
 
-let loadDependencies = function() {
-    getPlaylists();
-    getWebQueue();
-    getPublicQueue();
-    getFriendList();
-    bind();
+let loadDependencies = async function() {
+    await getPlaylists();
+    await getFriendList();
+    await bind();
 }
 
 let getPlaylists = function() {
@@ -38,7 +48,6 @@ let addFriend = function() {
 
 let runSearch = function() {
     console.log(self.searchBarInput())
-    self.searchBarInput('')
 }
 
 let getSearchResults = function() {
@@ -51,11 +60,9 @@ let playPause = function() {
         button.classList.remove('fa-pause');
         button.classList.add('fa-play');
         button.classList.add('positive');
-        console.log('play')
     } else if (button.classList.contains('fa-play'))  {
         button.classList.add('fa-pause');
         button.classList.remove('fa-play');
-        console.log('pause')
     }
 }
 

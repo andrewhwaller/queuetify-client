@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="semantic/dist/semantic.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/39b280393d.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   </head>
   <body>
     <div id="mainBinding">
@@ -29,7 +29,7 @@
         <div class="menu">
           <a href="#" class="item"><i class="icon angle double right"></i> View all playlists</a>
           <!-- ko foreach: playlists -->
-          <!-- <a href="#" class="item"><i class="icon list"></i> Playlist 1</a> -->
+          <a href="#" class="item"><i class="icon list"></i><span data-bind="text: name"></span></a>
           <!-- /ko -->
         </div>
       </div>
@@ -53,21 +53,18 @@
       </div>    
       <!-- search bar -->
       <div class="item">
-        <form data-bind="submit: runSearch">
-          <div class="ui mini action borderless input">
-            <input type="text" data-bind="textInput: searchBarInput" placeholder="Search..." />
-            <input type="submit" style="display: none" />
-            <button class="ui positive mini icon button" type="submit">
-              <i class="search icon"></i>
-            </button>
-          </div>
-        </form>
+        <div class="ui mini action borderless input">
+          <input type="text" data-bind="textInput: searchBarInput" placeholder="Search..." />
+          <button class="ui positive mini icon button" data-bind="click: runSearch">
+            <i class="search icon"></i>
+          </button>
+        </div>
         <div class="item">
-            <div class="three ui icon buttons">
-                <div class="ui large button"><i class="fas fa-step-backward"></i></div>
-                <div class="ui large button" onclick="playPause()"><i id="playButton" class="fas fa-play"></i></div>
-                <div class="ui large button"><i class="fas fa-step-forward"></i></div>
-            </div>
+          <div class="three ui icon buttons">
+              <div class="ui large button"><i class="fas fa-step-backward"></i></div>
+              <div class="ui large button" onclick="playPause()"><i id="playButton" class="fas fa-play"></i></div>
+              <div class="ui large button"><i class="fas fa-step-forward"></i></div>
+          </div>
         </div>
       </div>
     </div>
@@ -91,21 +88,18 @@
         </div>
       </div>
       <div class="right menu">
-        <a href="#" class="item">
-          <i class="bell icon"></i>
-        </a>
         <div class="ui dropdown item">
           <i class="user circle icon"></i>
           <div class="menu">
             <!-- use modals for all of these -->
             <a href="#" class="item">
-              <i class="info circle icon"></i> Profile
+              <span><i class="fa fa-id-badge icon"></i> Profile</span>
             </a>
             <a href="#" class="item">
-              <i class="info wrench icon"></i> Settings
+                <i class="fa fa-wrench icon"></i> Settings
             </a>
             <a href="#" class="item">
-              <i class="info logout icon"></i> Logout
+                <i class="fa fa-sign-out-alt icon"></i> Logout
             </a>
           </div>
         </div>
@@ -115,6 +109,7 @@
     <div class="pusher">
       <div class="main-content grid-background">
         <div class="ui stackable padded relaxed grid main-grid">
+          <!-- ko foreach:playlists -->
         <div class="four wide computer eight wide tablet sixteen wide mobile column">
           <div class="ui inverted fluid card">
             <div class="ui slide masked reveal image">
@@ -155,7 +150,7 @@
               </table>
             </div>
             <div class="content">
-              <a class="header">Playlist 1</a>
+              <a class="header" data-bind="text:name"></a>
               <div class="meta">
                 <span class="date">Created in Sep 2014</span>
               </div>
@@ -167,7 +162,8 @@
               </a>
             </div>
           </div>
-        </div>              
+        </div>   
+        <!-- /ko -->           
     <div class="ui menu inverted borderless bottom fixed playback-controls">
         <div class="row" style="width:100%;">
           <div class="sixteen wide center aligned column">
